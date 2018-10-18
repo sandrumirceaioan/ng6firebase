@@ -1,0 +1,22 @@
+<h1>Login</h1>
+<form (ngSubmit)="signup()" #loginForm="ngForm">
+  <div class="form-group">
+    <label for="email">email</label>
+    <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
+  </div>
+
+  <div class="form-group">
+    <label for="password">password</label>
+    <input type="test" class="form-control" id="password" [(ngModel)]="user.password" name="password">
+  </div>
+  <button type="submit" class="btn btn-success">login</button>
+</form>
+
+<br>
+<hr>
+<br>
+<ul>
+<li class="text" *ngFor="let user of users | async">
+    {{user | json}}
+  </li>
+</ul>
