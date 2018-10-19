@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { AuthService } from '../app/shared/services/auth/auth.service';
     AngularFireModule.initializeApp(environment.firebase, 'angular'),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireDatabaseModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
