@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from '../shared/services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,30 +11,20 @@ import { AuthService } from '../shared/services/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   user: any = {};
-  user_s: any = {};
   users: Observable<any[]>;
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService, private toastr: ToastrService) { 
   }
 
   ngOnInit() {
   }
 
-  signup() {
-    this.authService.signup(this.user.email, this.user.password)
-    .then(user =>{
-      console.log(user);
-    }).catch(error => {
-      console.log(error)
-    })
-  }
 
   login(){
-    this.authService.login(this.user_s.email, this.user_s.password)
+    this.authService.emailLogin(this.user.email, this.user.password)
     .then(result =>{
-      console.log(result);
-      this.user_s = result && result.users && result.users[0]|| {} ;
+      this.toastr.success('User logged in!');
     }).catch(err => {
-      console.log(err);
+      this.toastr.error(err.message);
     })
   }
 
